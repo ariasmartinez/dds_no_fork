@@ -42,9 +42,9 @@ jobs:
           name: report
           path: ./index.html
       - name: Create Issue
-      permissions:
-        contents: read
-        issues: write
+        permissions:
+          contents: read
+          issues: write
         if: failure()
         uses: JasonEtco/create-an-issue@v2
         env:
