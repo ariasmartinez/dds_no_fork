@@ -1,6 +1,9 @@
 name: Testing Interoperability
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: workflow_dispatch
+permissions:
+  contents: read
+  issues: write
 jobs:
   Testing_Interoperability:
     runs-on: ubuntu-latest
@@ -42,9 +45,6 @@ jobs:
           name: report
           path: ./index.html
       - name: Create Issue
-        permissions:
-          contents: read
-          issues: write
         if: failure()
         uses: JasonEtco/create-an-issue@v2
         env:
