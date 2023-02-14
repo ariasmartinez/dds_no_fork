@@ -33,20 +33,21 @@ jobs:
         uses: AutoModality/action-xunit-viewer@v1
         with:
           results: ./junit_interoperability_report.xml
-      - name: XUnit-viewer-save-failures
-        if: failure()
-        uses: AutoModality/action-xunit-viewer@v1
-        with:
-          results: test/failure
       - name: Attach the report
         if: always()
         uses: actions/upload-artifact@v1
         with:
           name: report
           path: ./index.html
+      - name: GET XML
+        id: getxml
+        uses: mavrosxristoforos/get-xml-info@1.0
+        with:
+          xml-file: './junit_interoperability_report.xml'
+          xpath: '//failures'
       - name: Create Issue
         if: failure()
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VARIABLE: test_name
+          VARIABLE: ${{ steps.getxml.outputs.info }}
