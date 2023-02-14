@@ -42,7 +42,7 @@ jobs:
       - name: GET XML
         if: always()
         id: getxml
-        uses: mavrosxristoforos/get-xml-info@1.0
+        uses: mavrosxristoforos/get-xml-info@1.1.0
         with:
           xml-file: './junit_interoperability_report.xml'
           xpath: '//testsuite/@name'
