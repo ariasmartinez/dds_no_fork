@@ -44,8 +44,6 @@ jobs:
       - name: Create Issue
         if: failure()
         uses: JasonEtco/create-an-issue@v2
-        with:
-          filename: .github/ISSUE_TEMPLATE/interoperability-issue-template.md
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ADJETIVE: test_failed
