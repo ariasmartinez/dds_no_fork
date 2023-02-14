@@ -38,6 +38,6 @@ from rtps_test_utilities import ReturnCode
 
 rtps_test_suite_1 = {
     # DATA REPRESENTATION
-    'Test_DataRepresentation_0' : ['-P -t Square -x 1', '-S -t Square -x 1', ReturnCode.OK, ReturnCode.OK],
-    'Test_DataRepresentation_1' : ['-P -t Square -x 1', '-S -t Square -x 2', ReturnCode.INCOMPATIBLE_QOS, ReturnCode.INCOMPATIBLE_QOS]
+    'Test_DataRepresentation_0' : ['-P -t Square -x 1', '-S -t Square -x 1', ReturnCode.DATA_NOT_RECEIVED, ReturnCode.OK],
+    'Test_DataRepresentation_1' : ['-P -t Square -x 1', '-S -t Square -x 2', ReturnCode.OK, ReturnCode.INCOMPATIBLE_QOS]
 }
