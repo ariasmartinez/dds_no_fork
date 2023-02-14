@@ -41,14 +41,22 @@ jobs:
           path: ./index.html
       - name: GET XML
         if: always()
-        id: getxml
+        id: getname
         uses: mavrosxristoforos/get-xml-info@1.1.0
         with:
           xml-file: './junit_interoperability_report.xml'
-          xpath: '//testsuite/@name', //testsuite/@failures'
+          xpath: '//testsuite/@name'
+      - name: GET XML-failures
+        if: always()
+        id: getfailures
+        uses: mavrosxristoforos/get-xml-info@1.1.0
+        with:
+          xml-file: './junit_interoperability_report.xml'
+          xpath: '//testsuite/@failures'
       - name: Create Issue
         if: failure()
         uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VARIABLE: ${{ steps.getxml.outputs.info }}
+          VARIABLE_NAME: ${{ steps.getname.outputs.info }}
+          VARIABLE_FAILURES: ${{ steps.getfailures.outputs.info }}
